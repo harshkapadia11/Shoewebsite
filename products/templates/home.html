@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--  card shape  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+
+        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css">
+            /* CSS Variables */
+    :root{
+        --headers: #2663c4;
+        --background:  #222222;
+        --grey: #858585;
+        --yellow: #FFC801;
+        --lightgrey: #d2d2d2;
+        --shadow: 0 1px 5px rgba(0, 0, 0, 0.473);
+        --hover: 0 3px 10px rgba(0, 0, 0, 0.205);
+    }
+    h5{
+        background-color: var(--yellow);
+    }
+.navbar {
+
+      border-radius: 0;
+    }
+    .btn{
+        background-color: var(--lightgrey);
+        font-family: 'Roboto Mono', monospace;
+        color: black;
+        height: 30px;
+        width: 90px;
+        border-radius: 5px;
+        border: none;
+        margin: 0px 10px 10px 10px;
+        transition-duration: 0.4s;
+    }
+
+    .btn:hover{
+        box-shadow: var(--shadow);
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+    /* BACKGROUND */
+    .background-container{
+        margin: 0;
+        padding: 50px;
+        background-color: var(--background);
+    }
+
+    /* PRODUCTS */
+    .product-container{
+        margin-left: 20%;
+        margin-right: 20%;
+        grid-template-columns: 325px 350px;
+        grid-row: auto auto;
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+    }
+    /* Footer */
+    footer{
+        width: 100%;
+        height: 100px;
+        text-align: center;
+
+        overflow: hidden;
+        background-color: var(--grey);
+    }
+
+    footer p{
+        font-family: 'Roboto Mono', monospace;
+        color: var(--lightgrey);
+        font-size: 14px;
+        padding: 25px;
+    }
+
+    /* Media Queries */
+    @media(max-width:1050px){
+
+        .product-container{
+            display: inline;
+            gap: 50px;
+            display:grid;
+            margin: auto;
+        }
+
+    }
+    #main_container
+                {
+                    width: 1550px;
+                   height: 100%;
+                   position: absolute;
+                }
+    .card-title{
+                   font-size: 25px;
+    }
+    .card-body{
+        color:#nnqi;
+    }
+        </style>
+
+    </head>
+    <body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!--      <a class="navbar-brand" href="#">Logo</a>-->
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="products">Products</a></li>
+                    <li><a href="order"> Your Orders</a></li>
+                    <li><a href="{% url 'credits' %}">Credits</a></li>
+                    <li><a href="logout">Log Out</a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon"></span> Welcome {{username}}</a></li>
+                    <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span>My Profile</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<!-- Banner -->
+
+<div id="main_container" >
+
+            <img src="{% static 'mysite/images/home_hero1.jpg'%}">
+        <div class="background-container">
+
+            <!-- Products -->
+            <div class="product-container">
+
+                </div>
+            <div class="row">
+                {% for brand in brands %}
+                <div class="col-sm-3">
+                    <a href="brand?b={{brand.brand}}">
+                        <div class="panel panel-primary">
+
+                        <img src="{{ brand.image_url }}"  class="img-responsive" style="width:300px;height:200px"
+                             alt="Image">
+                            <div>
+                            <h5 class="panel-heading"  >{{ brand.brand }}</h5>
+                            </div>
+                    </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Shoe Shop - A website by Harsh Kapadia And Kunal Modi</p>
+        </footer>
+
+</div>
+
+</body>
+</html>
